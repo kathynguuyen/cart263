@@ -1,15 +1,15 @@
-"use strict";
+Rambutan"use strict";
 
 /**
 Where's sausage dog
 Activity 1 - Kathy Nguyen
 */
 
-const NUM_ANIMAL_IMAGES = 2;
-const NUM_ANIMALS = 150;
+const NUM_rambutan_IMAGES = 2;
+const NUM_rambutanS = 150;
 
-let animalImages = [];
-let animals = [];
+let rambutanImages = [];
+let rambutans = [];
 
 let hedgehogImage;
 let hedgehog;
@@ -23,9 +23,9 @@ let state = `title`;
 load all the images and sounds
 */
 function preload() {
-  for(let i = 0; i < NUM_ANIMAL_IMAGES; i++) {
-    let animalImage = loadImage(`assets/images/rambutan${i}.png`);
-    animalImages.push(animalImage);
+  for(let i = 0; i < NUM_rambutan_IMAGES; i++) {
+    let rambutanImage = loadImage(`assets/images/rambutan${i}.png`);
+    rambutanImages.push(rambutanImage);
   }
 
   hedgehogImage = loadImage(`assets/images/hedgehog.png`);
@@ -44,13 +44,13 @@ function setup() {
   createCanvas(windowWidth,windowHeight);
 
 
-  // create the animalImages
-  for (let i = 0; i < NUM_ANIMALS; i++) {
+  // create the rambutanImages
+  for (let i = 0; i < NUM_rambutanS; i++) {
     let x = random(0,width);
     let y = random(0, height);
-    let animalImage = random(animalImages);
-    let animal = new Animal(x,y, animalImage);
-    animals.push(animal);
+    let rambutanImage = random(rambutanImages);
+    let rambutan = new Rambutan(x,y, rambutanImage);
+    rambutans.push(rambutan);
   }
 
   let x = random(0,width);
@@ -100,7 +100,7 @@ function title() {
 }
 
 function simulation() {
-  for(let i = 0; i < animals.length; i++) {
+  for(let i = 0; i < rambutans.length; i++) {
     animals[i].update();
 
   }
