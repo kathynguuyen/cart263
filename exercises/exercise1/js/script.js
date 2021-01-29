@@ -6,7 +6,7 @@ Activity 1 - Kathy Nguyen
 */
 
 const NUM_ANIMAL_IMAGES = 2;
-const NUM_ANIMALS = 100;
+const NUM_ANIMALS = 150;
 
 let animalImages = [];
 let animals = [];
