@@ -5,7 +5,7 @@ Where's sausage dog
 Activity 1 - Kathy Nguyen
 */
 
-const NUM_ANIMAL_IMAGES = 10;
+const NUM_ANIMAL_IMAGES = 2;
 const NUM_ANIMALS = 100;
 
 let animalImages = [];
@@ -19,7 +19,7 @@ Description of preload
 */
 function preload() {
   for(let i = 0; i < NUM_ANIMAL_IMAGES; i++) {
-    let animalImage = loadImage(`assets/images/animal${i}.png`);
+    let animalImage = loadImage(`assets/images/rambutan${i}.png`);
     animalImages.push(animalImage);
   }
 
@@ -54,7 +54,7 @@ function setup() {
 Description of draw()
 */
 function draw() {
-  background(255,255,0);
+
 
   for(let i = 0; i < animals.length; i++) {
     animals[i].update();
