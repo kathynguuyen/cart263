@@ -101,7 +101,7 @@ function title() {
 
 function simulation() {
   for(let i = 0; i < rambutans.length; i++) {
-    animals[i].update();
+    rambuatans[i].update();
 
   }
 
