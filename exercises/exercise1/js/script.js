@@ -5,11 +5,11 @@ Where's sausage dog
 Activity 1 - Kathy Nguyen
 */
 
-const NUM_rambutan_IMAGES = 10;
-const NUM_rambutanS = 100;
+const NUM_ANIMAL_IMAGES = 10;
+const NUM_ANIMALS = 100;
 
-let rambutanImages = [];
-let rambutans = [];
+let animalImages = [];
+let animals = [];
 
 let sausageDogImage = undefined;
 let sausageDog;
@@ -18,9 +18,9 @@ let sausageDog;
 Description of preload
 */
 function preload() {
-  for(let i = 0; i < NUM_rambutan_IMAGES; i++) {
-    let rambutanImage = loadImage(`assets/images/rambutan${i}.png`);
-    rambutanImages.push(rambutanImage);
+  for(let i = 0; i < NUM_ANIMAL_IMAGES; i++) {
+    let animalImage = loadImage(`assets/images/animal${i}.png`);
+    animalImages.push(animalImage);
   }
 
   sausageDogImage = loadImage(`assets/images/sausage-dog.png`);
@@ -33,13 +33,13 @@ Description of setup
 function setup() {
   createCanvas(windowWidth,windowHeight);
 
-  // create the rambutanImages
-  for (let i = 0; i < NUM_rambutanS; i++) {
+  // create the animalImages
+  for (let i = 0; i < NUM_ANIMALS; i++) {
     let x = random(0,width);
     let y = random(0, height);
-    let rambutanImage = random(rambutanImages);
-    let rambutan = new rambutan(x,y, rambutanImage);
-    rambutans.push(rambutan);
+    let animalImage = random(animalImages);
+    let animal = new Animal(x,y, animalImage);
+    animals.push(animal);
   }
 
   let x = random(0,width);
@@ -56,8 +56,8 @@ Description of draw()
 function draw() {
   background(255,255,0);
 
-  for(let i = 0; i < rambutans.length; i++) {
-    rambutans[i].update();
+  for(let i = 0; i < animals.length; i++) {
+    animals[i].update();
 
   }
 

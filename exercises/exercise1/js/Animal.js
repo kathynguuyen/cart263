@@ -1,4 +1,4 @@
-class Rambutan {
+class Animal {
   constructor(x,y,image) {
     this.x = x;
     this.y = y;
