@@ -1,12 +1,12 @@
-Rambutan"use strict";
+"use strict";
 
 /**
 Where's sausage dog
 Activity 1 - Kathy Nguyen
 */
 
-const NUM_rambutan_IMAGES = 2;
-const NUM_rambutanS = 150;
+const NUM_RAMBUTAN_IMAGES = 2;
+const NUM_RAMBUTANS = 150;
 
 let rambutanImages = [];
 let rambutans = [];
@@ -23,7 +23,7 @@ let state = `title`;
 load all the images and sounds
 */
 function preload() {
-  for(let i = 0; i < NUM_rambutan_IMAGES; i++) {
+  for(let i = 0; i < NUM_RAMBUTAN_IMAGES; i++) {
     let rambutanImage = loadImage(`assets/images/rambutan${i}.png`);
     rambutanImages.push(rambutanImage);
   }
@@ -45,7 +45,7 @@ function setup() {
 
 
   // create the rambutanImages
-  for (let i = 0; i < NUM_rambutanS; i++) {
+  for (let i = 0; i < NUM_RAMBUTANS; i++) {
     let x = random(0,width);
     let y = random(0, height);
     let rambutanImage = random(rambutanImages);
@@ -101,7 +101,7 @@ function title() {
 
 function simulation() {
   for(let i = 0; i < rambutans.length; i++) {
-    rambuatans[i].update();
+    rambutans[i].update();
 
   }
 
