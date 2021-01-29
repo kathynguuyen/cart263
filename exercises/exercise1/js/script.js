@@ -11,8 +11,8 @@ const NUM_ANIMALS = 100;
 let animalImages = [];
 let animals = [];
 
-let sausageDogImage = undefined;
-let sausageDog;
+let hedgehogImage;
+let hedgehog;
 
 /**
 Description of preload
@@ -23,7 +23,7 @@ function preload() {
     animalImages.push(animalImage);
   }
 
-  sausageDogImage = loadImage(`assets/images/sausage-dog.png`);
+  hedgehogImage = loadImage(`assets/images/hedgehog.png`);
 }
 
 
@@ -44,7 +44,7 @@ function setup() {
 
   let x = random(0,width);
   let y = random(0,height);
-  sausageDog = new SausageDog(x,y, sausageDogImage);
+  hedgehog = new Hedgehog(x,y, hedgehogImage);
  }
 
 
@@ -61,9 +61,9 @@ function draw() {
 
   }
 
-  sausageDog.update();
+  hedgehog.update();
 }
 
 function mousePressed() {
-  sausageDog.mousePressed();
+  hedgehog.mousePressed();
 }

@@ -1,4 +1,4 @@
-class SausageDog extends Animal {
+class Hedgehog extends Animal {
 
   constructor(x,y,image) {
     super(x,y,image);
