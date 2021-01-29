@@ -14,8 +14,11 @@ let animals = [];
 let hedgehogImage;
 let hedgehog;
 
+let swirlSound;
+let gameMusic;
+
 /**
-Description of preload
+load all the images and sounds
 */
 function preload() {
   for(let i = 0; i < NUM_ANIMAL_IMAGES; i++) {
@@ -24,15 +27,22 @@ function preload() {
   }
 
   hedgehogImage = loadImage(`assets/images/hedgehog.png`);
+
+  swirlSound = loadSound(`assets/sounds/swirlSound.wav`);
+  gameMusic = loadSound(`assets/sounds/gameMusic.mp3`);
 }
 
 
 /**
-Description of setup
+create hedgehogs and rambutan
 */
 function setup() {
   createCanvas(windowWidth,windowHeight);
 
+  gameMusic.setVolume(0.2);
+  gameMusic.play();
+  gameMusic.loop();
+  
   // create the animalImages
   for (let i = 0; i < NUM_ANIMALS; i++) {
     let x = random(0,width);
