@@ -1,4 +1,4 @@
-class Hedgehog extends Animal {
+class Hedgehog extends Rambutan {
 
   constructor(x,y,image) {
     super(x,y,image);
