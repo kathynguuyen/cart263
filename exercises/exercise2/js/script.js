@@ -31,33 +31,23 @@ const animals = [
   "dingo",
   "dog",
   "donkey",
-  "dromedary",
   "elephant",
   "elk",
   "ferret",
   "fish",
   "fox",
   "frog",
-  "gazelle",
-  "gila monster",
   "giraffe",
   "gnu",
   "goat",
   "gopher",
   "gorilla",
   "grizzly bear",
-  "ground hog",
-  "guinea pig",
   "hamster",
   "hedgehog",
   "hippopotamus",
   "hog",
   "horse",
-  "hyena",
-  "ibex",
-  "iguana",
-  "impala",
-  "jackal",
   "jaguar",
   "kangaroo",
   "koala",
@@ -96,7 +86,6 @@ const animals = [
   "platypus",
   "polar bear",
   "porcupine",
-  "prairie dog",
   "puma",
   "rabbit",
   "raccoon",
@@ -131,6 +120,19 @@ let currentAnimal = ``;
 let currentAnswer = ``;
 let state = `title`;
 let counter = 0;
+let correctSFX;
+let incorrectSFX;
+
+
+/**
+load all the images and sounds
+*/
+function preload() {
+
+  correctSFX= loadSound(`assets/sounds/correct.wav`);
+  incorrectSFX = loadSound(`assets/sounds/incorrect.wav`);
+
+}
 
 /**
 Description of setup
@@ -239,7 +241,7 @@ function mousePressed() {
 
   if (state === `game`) {
     currentAnimal = random(animals);
-    let reverseAnimal = reverseString(currentAnimal);
+    let reverseAnimal = reverseString(currentAnimal);``
     responsiveVoice.speak(reverseAnimal);
   }
 
@@ -251,6 +253,9 @@ function guessAnimal(animal) {
 
   if(currentAnswer === currentAnimal) {
     counter++;
+    correctSFX.play();
+  } else {
+    incorrectSFX.play();
   }
 
   if (counter === 2) {
