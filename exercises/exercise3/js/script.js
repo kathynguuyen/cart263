@@ -85,6 +85,19 @@ function draw() {
   textAlign(LEFT,TOP);
   fill(0);
   text(profile, 100, 100);
+  text(`Delete your profile by pressing c`,100,500);
+
 
   pop();
+
+
+
+}
+
+
+
+function keyPressed() {
+  if(key === `c`) {
+    localStorage.removeItem(`spy-profile-data`);
+  }
 }
