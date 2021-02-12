@@ -13,12 +13,16 @@ let spyProfile = {
   name: `**REDACTED**`,
   alias: `**REDACTED**`,
   secretWeapon: `**REDACTED**`,
-  password: `**REDACTED**`
+  password: `**REDACTED**`,
+  favoriteFood: `**REDACTED**`,
+  favoriteSport: `**REDACTED**`
 }
 
 let instrumentData = undefined;
 let objectData = undefined;
 let tarotData = undefined;
+let foodData = undefined;
+let sportData = undefined;
 
 
 /**
@@ -28,6 +32,8 @@ function preload() {
   instrumentData = loadJSON(`https://raw.githubusercontent.com/dariusk/corpora/master/data/music/instruments.json`);
   objectData = loadJSON(`https://raw.githubusercontent.com/dariusk/corpora/master/data/objects/objects.json`);
   tarotData = loadJSON(`https://raw.githubusercontent.com/dariusk/corpora/master/data/divination/tarot_interpretations.json`);
+  foodData = loadJSON(`https://raw.githubusercontent.com/dariusk/corpora/master/data/foods/menuItems.json`);
+  sportData = loadJSON(`https://raw.githubusercontent.com/dariusk/corpora/master/data/sports/sports.json`);
 }
 
 
@@ -46,6 +52,8 @@ function setup() {
       spyProfile.alias = data.alias;
       spyProfile.secretWeapon = data.secretWeapon;
       spyProfile.password = data.password;
+      spyProfile.favoriteFood = data.favoriteFood;
+      spyProfile.favoriteSport = data.favoriteSport;
     }
 
   } else {
@@ -61,6 +69,8 @@ function generateProfile() {
   spyProfile.secretWeapon = random(objectData.objects);
   let card = random(tarotData.tarot_interpretations);
   spyProfile.password = random(card.keywords);
+  spyProfile.favoriteFood = random(foodData.menuItems);
+  spyProfile.favoriteSport = random(sportData.sports);
 
   localStorage.setItem(`spy-profile-data`,JSON.stringify(spyProfile));
 }
@@ -77,7 +87,9 @@ function draw() {
   Name: ${spyProfile.name}
   Alias: ${spyProfile.alias}
   Secret Weapon: ${spyProfile.secretWeapon}
-  Password: ${spyProfile.password}`;
+  Password: ${spyProfile.password}
+  Favorite food: ${spyProfile.favoriteFood}
+  Favorite sport: ${spyProfile.favoriteSport}`;
 
   push();
   textFont(`Courier, monospace`);
@@ -95,7 +107,7 @@ function draw() {
 }
 
 
-
+// remove item by pressing a button
 function keyPressed() {
   if(key === `c`) {
     localStorage.removeItem(`spy-profile-data`);
