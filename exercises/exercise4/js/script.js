@@ -15,15 +15,19 @@ let handpose = undefined;
 // current set of predictions
 let predictions = [];
 
+// counter how many user pops
+let counter = 0;
 
 // the Bubble
 let bubble = undefined;
+
+let bubbleSFX;
 
 /**
 Description of preload
 */
 function preload() {
-
+  bubbleSFX = loadSound(`assets/sounds/popSound.mp3`);
 }
 
 
@@ -99,6 +103,9 @@ function draw() {
     if (d < bubble.size/2) {
       bubble.x = random(width);
       bubble.y = height;
+
+      // sound effect when bubble pops
+      bubbleSFX.play();
     }
   }
 
