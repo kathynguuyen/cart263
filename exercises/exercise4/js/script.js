@@ -123,6 +123,13 @@ function instructions() {
 
 
 function running() {
+
+  push();
+  fill(255,255,255);
+  textSize(30);
+  text("score:" + counter, 100,100);
+  pop();
+
   if (predictions.length > 0) {
     let hand = predictions[0];
     let index = hand.annotations.indexFinger;
@@ -149,11 +156,7 @@ function running() {
     ellipse(baseX, baseY, 20);
     pop();
 
-    push();
-    fill(255,255,255);
-    textSize(30);
-    text("score:" + counter, 100,100);
-    pop();
+
 
     // check bubble popping
     let d = dist(tipX, tipY, bubble.x, bubble.y);
