@@ -23,6 +23,8 @@ let bubble = undefined;
 
 let bubbleSFX;
 
+let state = `loading`;
+
 /**
 Description of preload
 */
@@ -47,6 +49,7 @@ function setup() {
     flipHorizontal: true
   },   function() {
       console.log(`Model loaded.`);
+      state = `title`;
     });
 
     // listen for predictions
@@ -72,6 +75,54 @@ Description of draw()
 function draw() {
   background(0);
 
+  if (state === `loading`) {
+    loading();
+  } else if (state === `title`) {
+    title();
+  } else if (state === `instructions`) {
+    instructions();
+  } else if (state === `running`) {
+    running();
+  }
+
+}
+
+
+
+function loading() {
+  push();
+  background(0);
+  fill(255,255,255);
+  text(`Loading ml5 Handpose...`, width / 2, height / 2);
+  pop();
+}
+
+
+function title() {
+  push();
+  background(0);
+  textAlign(CENTER,CENTER);
+  textSize(30);
+  fill(255,255,255);
+  text(`Welcome to bubble popper!`, width / 2, height / 2);
+  text(`Press any key to continue`, width / 2, height / 2 + 50);
+  pop();
+
+}
+
+function instructions() {
+  push();
+  background(0);
+  textAlign(CENTER,CENTER);
+  textSize(20);
+  fill(255,255,255);
+  text(`Pop the bubbles with your index finger using your camera!`, width / 2, height / 2);
+  text(`Press any key to continue`, width / 2, height / 2 + 50);
+  pop();
+}
+
+
+function running() {
   if (predictions.length > 0) {
     let hand = predictions[0];
     let index = hand.annotations.indexFinger;
@@ -130,4 +181,14 @@ function draw() {
   ellipse(bubble.x, bubble.y, bubble.size);
   pop();
 
+
+}
+
+
+function keyPressed() {
+  if (state === `title`) {
+    state = `instructions`;
+  } else if (state === `instructions`) {
+    state = `running`;
+  }
 }
