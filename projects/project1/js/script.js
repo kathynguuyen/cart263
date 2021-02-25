@@ -3,7 +3,7 @@
 /**
 Kathy Nguyen
 
-Project 01:
+Project 01: Inspired by the korean movie Space Sweepers.
 */
 
 // user's webcam
@@ -99,33 +99,47 @@ function draw() {
 }
 
 
-
+/** function loading ---------------------------------------------------
+*/
 function loading() {
   push();
   textFont(paragraphFont);
   textSize(30);
   fill(255,255,255);
   textAlign(CENTER,CENTER);
-  text(`Agent Loading...`, width / 2, height / 2);
+  text(`Space Sweeper Agent Loading...`, width / 2, height / 2);
   pop();
 }
 
+/** end of loading  ---------------------------------------------------
+*/
 
 /** function title ------------------------------------------------------
 */
 function title() {
   push();
   displayTitle();
+  helloAgent();
   pop();
 }
 
 
+// display the main title of the game
 function displayTitle(){
   textFont(titleFont);
   textAlign(CENTER,CENTER);
   textSize(50);
   fill(255,255,255);
   text(`SPACE SWEEPERS`, width / 2, height / 2 - 150);
+}
+
+function helloAgent() {
+  textFont(paragraphFont);
+  textAlign(CENTER,CENTER);
+  textSize(15);
+  fill(255,255,255);
+  text(`Hello, Space Sweeper Agent! `, width / 2, height / 2 - 40);
+  text(`If this is your first day at Space Sweepers, please say: 'my name is' ______' `, width/ 2, height / 2);
 }
 
 
