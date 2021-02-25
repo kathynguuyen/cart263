@@ -3,7 +3,7 @@
 /**
 Kathy Nguyen
 
-Activity 4 : Bubble Popper
+Project 01:
 */
 
 // user's webcam
@@ -23,13 +23,25 @@ let bubble = undefined;
 
 let bubbleSFX;
 
-let state = `loading`;
+let state = `title`;
+
+// fonts
+let titleFont;
+let paragraphFont;
+
 
 /**
 Description of preload
+Load fonts, pictures and sounds
 */
 function preload() {
+
+  // load sounds
   bubbleSFX = loadSound(`assets/sounds/popSound.mp3`);
+
+  // load fonts
+  titleFont = loadFont(`assets/fonts/Awakenning.ttf`);
+  paragraphFont = loadFont(`assets/fonts/Petrichor.ttf`);
 }
 
 
@@ -90,23 +102,35 @@ function draw() {
 
 function loading() {
   push();
-  fill(255,255,255);
-  textAlign(CENTER,CENTER);
-  text(`Loading ml5 Handpose...`, width / 2, height / 2);
-  pop();
-}
-
-
-function title() {
-  push();
-  textAlign(CENTER,CENTER);
+  textFont(paragraphFont);
   textSize(30);
   fill(255,255,255);
-  text(`Welcome to bubble popper!`, width / 2, height / 2);
-  text(`Press any key to continue`, width / 2, height / 2 + 50);
+  textAlign(CENTER,CENTER);
+  text(`Agent Loading...`, width / 2, height / 2);
   pop();
-
 }
+
+
+/** function title ------------------------------------------------------
+*/
+function title() {
+  push();
+  displayTitle();
+  pop();
+}
+
+
+function displayTitle(){
+  textFont(titleFont);
+  textAlign(CENTER,CENTER);
+  textSize(50);
+  fill(255,255,255);
+  text(`SPACE SWEEPERS`, width / 2, height / 2 - 150);
+}
+
+
+/** end of function title -----------------------------------------------
+*/
 
 function instructions() {
   push();
