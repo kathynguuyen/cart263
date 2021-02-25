@@ -37,7 +37,7 @@ function preload() {
 Description of setup
 */
 function setup() {
-
+  background(0);
   createCanvas(640,480);
 
   // access user's webcam
