@@ -140,6 +140,8 @@ function helloAgent() {
   fill(255,255,255);
   text(`Hello, Space Sweeper Agent! `, width / 2, height / 2 - 40);
   text(`If this is your first day at Space Sweepers, please say: 'my name is' ______' `, width/ 2, height / 2);
+  text(`Else, please say 'existing user: '______' `, width/ 2, height / 2 + 30);
+
 }
 
 
