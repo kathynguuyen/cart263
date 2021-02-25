@@ -37,9 +37,8 @@ function preload() {
 Description of setup
 */
 function setup() {
-  background(0);
-  createCanvas(640,480);
 
+  createCanvas(640,480);
   // access user's webcam
   video = createCapture(VIDEO);
   video.hide();
@@ -91,8 +90,8 @@ function draw() {
 
 function loading() {
   push();
-  background(0);
   fill(255,255,255);
+  textAlign(CENTER,CENTER);
   text(`Loading ml5 Handpose...`, width / 2, height / 2);
   pop();
 }
@@ -100,7 +99,6 @@ function loading() {
 
 function title() {
   push();
-  background(0);
   textAlign(CENTER,CENTER);
   textSize(30);
   fill(255,255,255);
@@ -112,7 +110,6 @@ function title() {
 
 function instructions() {
   push();
-  background(0);
   textAlign(CENTER,CENTER);
   textSize(20);
   fill(255,255,255);
