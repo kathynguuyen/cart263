@@ -6,6 +6,13 @@ Kathy Nguyen
 Project 01: Inspired by the korean movie Space Sweepers.
 */
 
+// agent profile (login and password)
+let agentProfile = {
+  name: `**REDACTED**`,
+  password: `**REDACTED**`
+}
+
+
 // user's webcam
 let video = undefined;
 
@@ -23,12 +30,13 @@ let bubble = undefined;
 
 let bubbleSFX;
 
-let state = `title`;
+let state = `loading`;
 
 // fonts
 let titleFont;
 let paragraphFont;
 
+let objectData = undefined;
 
 /**
 Description of preload
@@ -42,6 +50,9 @@ function preload() {
   // load fonts
   titleFont = loadFont(`assets/fonts/Awakenning.ttf`);
   paragraphFont = loadFont(`assets/fonts/Petrichor.ttf`);
+
+  // random words for password
+  objectData = loadJSON(`https://raw.githubusercontent.com/dariusk/corpora/master/data/objects/objects.json`);
 }
 
 
@@ -54,6 +65,10 @@ function setup() {
   // access user's webcam
   video = createCapture(VIDEO);
   video.hide();
+
+
+  //store the info somewhere
+  let data = JSON.parse(localStorage.getItem(`agent-profile-data`));
 
   // load the handpose model
   handpose = ml5.handpose(video, {
@@ -77,6 +92,18 @@ function setup() {
       vx: 0,
       vy: -2
     };
+
+
+    // annyang commands
+    if(annyang) {
+      let commands = {
+        'My name is *name': nameInput,
+        'Existing user is *name': nameInput
+      };
+      annyang.addCommands(commands);
+      annyang.start();
+    }
+
 }
 
 
@@ -139,21 +166,41 @@ function helloAgent() {
   textSize(15);
   fill(255,255,255);
   text(`Hello, Space Sweeper Agent! `, width / 2, height / 2 - 40);
-  text(`If this is your first day at Space Sweepers, please say: 'my name is' ______' `, width/ 2, height / 2);
-  text(`Else, please say 'existing user: '______' `, width/ 2, height / 2 + 30);
-
+  text(`Welcome to your first day at Space Sweeper, please say: 'My name is '______' `, width/ 2, height / 2);
+  text(`Else, please say 'Existing user is: '______' `, width/ 2, height / 2 + 30);
 }
 
+
+function nameInput(name) {
+  if(state === `title`) {
+
+    agentProfile.name = name.toUpperCase();
+    console.log(agentProfile.name);
+    state = `instructions`;
+    generateAgentProfile();
+
+  }
+}
+
+
+function generateAgentProfile() {
+  spyProfile.password = random(objectData.objects);
+}
 
 /** end of function title -----------------------------------------------
 */
 
+
+/** function instructions  ------------------------------------------------------
+*/
 function instructions() {
   push();
+  textFont(paragraphFont);
   textAlign(CENTER,CENTER);
-  textSize(20);
+  textSize(15);
   fill(255,255,255);
-  text(`Pop the bubbles with your index finger using your camera!`, width / 2, height / 2);
+  text(`Hello, ${agentProfile.name}`, width / 2, height / 2 - 40);
+  text(`Pop the asteroids with your index finger using your camera!`, width / 2, height / 2);
   text(`Press any key to continue`, width / 2, height / 2 + 50);
   pop();
 }
