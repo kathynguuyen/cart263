@@ -9,7 +9,6 @@ Project 01: Inspired by the korean movie Space Sweepers.
 // agent profile (login and password)
 let agentProfile = {
   name: `**REDACTED**`,
-  password: `**REDACTED**`,
 }
 
 let gameData = {
@@ -227,7 +226,7 @@ function instructions() {
   fill(255,255,255);
   text(`Hello, ${agentProfile.name}`, width / 2, height / 2 - 40);
   text(`Collect the asteroids with your index finger using your camera!`, width / 2, height / 2);
-  text(`Avoid the rockets!`, width / 2, height / 2);
+  text(`Avoid the rockets!`, width / 2 + 30, height / 2 + 30);
   text(`Press any key to continue`, width / 2, height / 2 + 50);
   pop();
 }
@@ -237,9 +236,9 @@ function running() {
 
   push();
   image(backgroundImg, 0, 0, 640, 480);
-  fill(255,255,255);
+  fill(0);
   textSize(30);
-  text("High score:" + gameData.highScore, 100,100);
+  text("High score:" + gameData.highScore, TOP ,LEFT);
   pop();
 
 
