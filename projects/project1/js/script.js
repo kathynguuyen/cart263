@@ -45,6 +45,7 @@ let paragraphFont;
 let rocketImg;
 let backgroundImg;
 let rockImg;
+let secondRocketImg;
 
 
 
@@ -66,6 +67,7 @@ function preload() {
   rocketImg = loadImage("assets/images/rocket.png");
   backgroundImg = loadImage("assets/images/background.png");
   rockImg = loadImage("assets/images/rock.png");
+  secondRocketImg = loadImage("assets/images/rocket2.png");
 }
 
 
@@ -116,9 +118,16 @@ function setup() {
         y: height,
         size: 50,
         vx: 0,
-        vy: -2,
+        vy: -2
       }
 
+      seconeRocket = {
+        x: random(width),
+        y: height,
+        size: 50,
+        vx: 0,
+        vy: -2
+      }
 
 
 
@@ -130,7 +139,7 @@ function setup() {
       annyang.addCommands(commands);
       annyang.start();
     }
-
+1
 }
 
 
@@ -293,6 +302,11 @@ function running() {
       state = `lose`;
     }
 
+    let d3 = dist(tipX, tipY, secondRocket.x, secondRocket.y);
+    if (d3 < secondRocket.size/2) {
+      state = `lose`;
+    }
+
   }
 
 
@@ -306,6 +320,10 @@ function running() {
   rocket.x += rocket.vx;
   rocket.y += rocket.vy;
 
+  // move the rocket
+  secondRocket.x += secondRocket.vx;
+  secondRocket.y += secondRocket.vy;
+
   if (rock.y < 0) {
     rock.x = random(width);
     rock.y = height;
@@ -316,6 +334,13 @@ function running() {
       rocket.x = random(width);
       rocket.y = height;
 }
+
+
+if (secondRocket.y < 0) {
+  secondRocket.x = random(width);
+  SecondRocket.y = height;
+}
+
 
 
 
@@ -329,6 +354,7 @@ function running() {
 
   image(rocketImg,rocket.x, rocket.y, 60,60);
 
+    image(secondRocketImg,secondRocket.x, secondRocket.y, 70,70);
 
 
 }
