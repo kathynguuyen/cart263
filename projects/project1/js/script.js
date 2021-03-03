@@ -13,8 +13,8 @@ let agentProfile = {
 }
 
 let gameData = {
-  highScore = 0
-}
+  highScore: 0
+};
 
 // user's webcam
 let video = undefined;
