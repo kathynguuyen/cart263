@@ -9,7 +9,8 @@ Project 01: Inspired by the korean movie Space Sweepers.
 // agent profile (login and password)
 let agentProfile = {
   name: `**REDACTED**`,
-  password: `**REDACTED**`
+  password: `**REDACTED**`,
+  counter: `**REDACTED**`
 }
 
 
@@ -25,16 +26,21 @@ let predictions = [];
 // counter how many user pops
 let counter = 0;
 
-// the Bubble
-let bubble = undefined;
+// the rock
+let rock = undefined;
 
-let bubbleSFX;
+let rockSFX;
 
 let state = `loading`;
 
 // fonts
 let titleFont;
 let paragraphFont;
+
+// images
+let rocketImg;
+let backgroundImg;
+let rockImg;
 
 let objectData = undefined;
 
@@ -45,7 +51,7 @@ Load fonts, pictures and sounds
 function preload() {
 
   // load sounds
-  bubbleSFX = loadSound(`assets/sounds/popSound.mp3`);
+  rockSFX = loadSound(`assets/sounds/popSound.mp3`);
 
   // load fonts
   titleFont = loadFont(`assets/fonts/Awakenning.ttf`);
@@ -53,6 +59,11 @@ function preload() {
 
   // random words for password
   objectData = loadJSON(`https://raw.githubusercontent.com/dariusk/corpora/master/data/objects/objects.json`);
+
+  // load images
+  rocketImg = loadImage("assets/images/rocket.png");
+  backgroundImg = loadImage("assets/images/background.png");
+  rockImg = loadImage("assets/images/rock.png");
 }
 
 
@@ -84,13 +95,14 @@ function setup() {
       predictions = results;
     });
 
-    // our Bubble
-    bubble = {
+    // our rock
+    rock = {
       x: random(width),
       y: height,
-      size: 100,
+      size: 50,
       vx: 0,
-      vy: -2
+      vy: -2,
+      img: rockImg
     };
 
 
@@ -98,7 +110,7 @@ function setup() {
     if(annyang) {
       let commands = {
         'My name is *name': nameInput,
-        'Existing user is *name': nameInput
+        'Existing user is *password': nameInput
       };
       annyang.addCommands(commands);
       annyang.start();
@@ -200,7 +212,7 @@ function instructions() {
   textSize(15);
   fill(255,255,255);
   text(`Hello, ${agentProfile.name}`, width / 2, height / 2 - 40);
-  text(`Pop the asteroids with your index finger using your camera!`, width / 2, height / 2);
+  text(`Collect the asteroids with your index finger using your camera!`, width / 2, height / 2);
   text(`Press any key to continue`, width / 2, height / 2 + 50);
   pop();
 }
@@ -209,10 +221,12 @@ function instructions() {
 function running() {
 
   push();
+  image(backgroundImg, 0, 0, 640, 480);
   fill(255,255,255);
   textSize(30);
   text("score:" + counter, 100,100);
   pop();
+
 
   if (predictions.length > 0) {
     let hand = predictions[0];
@@ -237,35 +251,35 @@ function running() {
     push();
     noStroke();
     fill(255,0,0);
-    ellipse(baseX, baseY, 20);
+    ellipse(baseX, baseY, 50, 50);
     pop();
 
 
 
-    // check bubble popping
-    let d = dist(tipX, tipY, bubble.x, bubble.y);
-    if (d < bubble.size/2) {
-      bubble.x = random(width);
-      bubble.y = height;
+    // check rock popping
+    let d = dist(tipX, tipY, rock.x, rock.y);
+    if (d < rock.size/2) {
+      rock.x = random(width);
+      rock.y = height;
       counter++;
-      // sound effect when bubble pops
-      bubbleSFX.play();
+      // sound effect when rock pops
+      rockSFX.play();
     }
   }
 
-  // move the Bubble
-  bubble.x += bubble.vx;
-  bubble.y += bubble.vy;
+  // move the rock
+  rock.x += rock.vx;
+  rock.y += rock.vy;
 
-  if (bubble.y < 0) {
-    bubble.x = random(width);
-    bubble.y = height;
+  if (rock.y < 0) {
+    rock.x = random(width);
+    rock.y = height;
   }
 
   push();
   fill(0,100,200);
   noStroke();
-  ellipse(bubble.x, bubble.y, bubble.size);
+  image(rockImg,rock.x, rock.y, rock.size);
   pop();
 
 
