@@ -298,14 +298,12 @@ function running() {
 
     let d2 = dist(tipX, tipY, rocket.x, rocket.y);
     if (d2 < rocket.size / 2) {
-      crashSFX.volume(0.1);
       crashSFX.play();
       state = `lose`;
     }
 
     let d3 = dist(tipX, tipY, secondRocket.x, secondRocket.y);
     if (d3 < secondRocket.size / 2) {
-      crashSFX.volume(0.1);
       crashSFX.play();
       state = `lose`;
     }
