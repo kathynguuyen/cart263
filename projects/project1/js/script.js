@@ -117,9 +117,8 @@ function setup() {
         size: 50,
         vx: 0,
         vy: -2,
-        minSpeed: 3,
-        maxSpeed: 5
       }
+
 
 
 
@@ -226,7 +225,7 @@ function instructions() {
   fill(255,255,255);
   text(`Hello, ${agentProfile.name}`, width / 2, height / 2 - 40);
   text(`Collect the asteroids with your index finger using your camera!`, width / 2, height / 2);
-  text(`Avoid the rockets!`, width / 2 + 30, height / 2 + 30);
+  text(`Avoid the rockets!`, width / 2, height / 2 + 30);
   text(`Press any key to continue`, width / 2, height / 2 + 50);
   pop();
 }
@@ -238,7 +237,9 @@ function running() {
   image(backgroundImg, 0, 0, 640, 480);
   fill(0);
   textSize(30);
-  text("High score:" + gameData.highScore, TOP ,LEFT);
+  textFont(paragraphFont);
+  text("High score:" + gameData.highScore, 100, 100);
+  text("Current score:" + counter, 100, 150);
   pop();
 
 
@@ -314,7 +315,6 @@ function running() {
     if (rocket.y < 0) {
       rocket.x = random(width);
       rocket.y = height;
-      rocket.vy = random(rocket.minSpeed, rocket.maxSpeed);
 }
 
 
@@ -327,17 +327,33 @@ function running() {
 
 
 
-  image(rocketImg,rocket.x, rocket.y, 50,50);
+  image(rocketImg,rocket.x, rocket.y, 60,60);
 
 
 
 }
 
+function lose() {
+  push();
+  textFont(paragraphFont);
+  textAlign(CENTER,CENTER);
+  textSize(15);
+  fill(255,255,255);
+  text(`Hello, ${agentProfile.name}`, width / 2, height / 2 - 40);
+  text(`YOU LOST!`, width / 2, height / 2);
+  text(`Press ENTER to restart!`, width / 2, height / 2 + 30);
+  pop();
+  counter = 0;
+}
 
 function keyPressed() {
   if (state === `title`) {
     state = `instructions`;
   } else if (state === `instructions`) {
     state = `running`;
+  } else if (state === `lose`) {
+    if(keyCode === ENTER) {
+      state = `running`;
+    }
   }
 }
