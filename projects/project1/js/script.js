@@ -9,9 +9,12 @@ Project 01: Inspired by the korean movie Space Sweepers.
 // agent profile (login and password)
 let agentProfile = {
   name: `**REDACTED**`,
-  password: `**REDACTED**`
+  password: `**REDACTED**`,
 }
 
+let gameData = {
+  highScore = 0
+}
 
 // user's webcam
 let video = undefined;
@@ -44,7 +47,7 @@ let rocketImg;
 let backgroundImg;
 let rockImg;
 
-let objectData = undefined;
+
 
 /**
 Description of preload
@@ -59,8 +62,6 @@ function preload() {
   titleFont = loadFont(`assets/fonts/Awakenning.ttf`);
   paragraphFont = loadFont(`assets/fonts/Petrichor.ttf`);
 
-  // random words for password
-  objectData = loadJSON(`https://raw.githubusercontent.com/dariusk/corpora/master/data/objects/objects.json`);
 
   // load images
   rocketImg = loadImage("assets/images/rocket.png");
@@ -74,14 +75,17 @@ Description of setup
 */
 function setup() {
 
+
   createCanvas(640,480);
   // access user's webcam
   video = createCapture(VIDEO);
   video.hide();
 
 
-  //store the info somewhere
-  let data = JSON.parse(localStorage.getItem(`agent-profile-data`));
+  let data = JSON.parse(localStorage.getItem('space-sweeper-high-score-data'));
+  if(data !== null) {
+    gameData = data;
+  }
 
   // load the handpose model
   handpose = ml5.handpose(video, {
@@ -123,8 +127,7 @@ function setup() {
     // annyang commands
     if(annyang) {
       let commands = {
-        'My name is *name': nameInput,
-        'Existing user is *password': nameInput
+        'My name is *name': nameInput
       };
       annyang.addCommands(commands);
       annyang.start();
@@ -195,7 +198,6 @@ function helloAgent() {
   fill(255,255,255);
   text(`Hello, Space Sweeper Agent! `, width / 2, height / 2 - 40);
   text(`Welcome to your first day at Space Sweeper, please say: 'My name is '______' `, width/ 2, height / 2);
-  text(`Else, please say 'Existing user is: '______' `, width/ 2, height / 2 + 30);
 }
 
 
@@ -211,10 +213,6 @@ function nameInput(name) {
 }
 
 
-function generateAgentProfile() {
-  spyProfile.password = random(objectData.objects);
-}
-
 /** end of function title -----------------------------------------------
 */
 
@@ -229,6 +227,7 @@ function instructions() {
   fill(255,255,255);
   text(`Hello, ${agentProfile.name}`, width / 2, height / 2 - 40);
   text(`Collect the asteroids with your index finger using your camera!`, width / 2, height / 2);
+  text(`Avoid the rockets!`, width / 2, height / 2);
   text(`Press any key to continue`, width / 2, height / 2 + 50);
   pop();
 }
@@ -240,7 +239,7 @@ function running() {
   image(backgroundImg, 0, 0, 640, 480);
   fill(255,255,255);
   textSize(30);
-  text("score:" + counter, 100,100);
+  text("High score:" + gameData.highScore, 100,100);
   pop();
 
 
@@ -280,6 +279,11 @@ function running() {
       rock.x = random(width);
       rock.y = height;
       counter++;
+
+      if(counter > gameData.highScore) {
+        gameData.highScore = counter;
+        localStorage.setItem(`space-sweeper-high-score-data`, JSON.stringify(gameData));
+      }
       // sound effect when rock pops
       rockSFX.play();
     }
