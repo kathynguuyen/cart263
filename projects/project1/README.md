@@ -6,4 +6,11 @@ For the colors, I went for a dark theme to make it feel more like space. For the
 
 I used the annyang library, in the order to make the agent connect to the game with their voices. They will have to say their name in order to connect to the game. I also used the ml5 library for the hand recognition in order to sweep space with their index finger.
 
-Overall, I felt pretty overwhelmed by this project but I tried to use the most libraries that we used in class for the first half of the semester. I wanted to save the user's profile with a password but I had a problem with the local storage. Hopefully, my next project I will practice coding more. I am also hoping that my second project would have more interactions.  
+Overall, I felt pretty overwhelmed by this project but I tried to use the most libraries that we used in class for the first half of the semester. I wanted to save the user's profile with a password but I had a problem with the local storage. Hopefully, my next project I will practice coding more. I am also hoping that my second project would have more interactions.
+
+# Credits
+
+Inspired by Space Sweepers Movie
+Icons from flaticon
+Sound effects from freesounds
+Background from Bloons TD 6
