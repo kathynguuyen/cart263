@@ -36,6 +36,7 @@ let rocket = undefined;
 let secondRocket = undefined;
 
 let rockSFX;
+let crashSFX;
 
 let state = `loading`;
 
@@ -55,7 +56,8 @@ Load fonts, pictures and sounds
 */
 function preload() {
   // load sounds
-  rockSFX = loadSound(`assets/sounds/popSound.mp3`);
+  rockSFX = loadSound(`assets/sounds/wooshSound.wav`);
+  crashSFX = loadSound(`assets/sounds/crashSound.wav`);
 
   // load fonts
   titleFont = loadFont(`assets/fonts/Awakenning.ttf`);
@@ -296,11 +298,15 @@ function running() {
 
     let d2 = dist(tipX, tipY, rocket.x, rocket.y);
     if (d2 < rocket.size / 2) {
+      crashSFX.volume(0.1);
+      crashSFX.play();
       state = `lose`;
     }
 
     let d3 = dist(tipX, tipY, secondRocket.x, secondRocket.y);
     if (d3 < secondRocket.size / 2) {
+      crashSFX.volume(0.1);
+      crashSFX.play();
       state = `lose`;
     }
   }
