@@ -9,8 +9,7 @@ Project 01: Inspired by the korean movie Space Sweepers.
 // agent profile (login and password)
 let agentProfile = {
   name: `**REDACTED**`,
-  password: `**REDACTED**`,
-  counter: `**REDACTED**`
+  password: `**REDACTED**`
 }
 
 
@@ -28,6 +27,9 @@ let counter = 0;
 
 // the rock
 let rock = undefined;
+
+// rocket (obstacle)
+let rocket = undefined;
 
 let rockSFX;
 
@@ -105,6 +107,18 @@ function setup() {
       img: rockImg
     };
 
+    // rocket
+      rocket = {
+        x: random(width),
+        y: height,
+        size: 50,
+        vx: 0,
+        vy: -2,
+        minSpeed: 3,
+        maxSpeed: 5
+      }
+
+
 
     // annyang commands
     if(annyang) {
@@ -133,6 +147,8 @@ function draw() {
     instructions();
   } else if (state === `running`) {
     running();
+  } else if (state === `lose`) {
+    lose();
   }
 
 }
@@ -256,8 +272,10 @@ function running() {
 
 
 
-    // check rock popping
+    // check rock destroy
     let d = dist(tipX, tipY, rock.x, rock.y);
+
+
     if (d < rock.size/2) {
       rock.x = random(width);
       rock.y = height;
@@ -265,22 +283,49 @@ function running() {
       // sound effect when rock pops
       rockSFX.play();
     }
+
+    let d2 = dist(tipX, tipY, rocket.x, rocket.y);
+    if (d2 < rocket.size/2) {
+      state = `lose`;
+    }
+
   }
+
+
+
 
   // move the rock
   rock.x += rock.vx;
   rock.y += rock.vy;
+
+  // move the rocket
+  rocket.x += rocket.vx;
+  rocket.y += rocket.vy;
 
   if (rock.y < 0) {
     rock.x = random(width);
     rock.y = height;
   }
 
+
+    if (rocket.y < 0) {
+      rocket.x = random(width);
+      rocket.y = height;
+      rocket.vy = random(rocket.minSpeed, rocket.maxSpeed);
+}
+
+
+
   push();
   fill(0,100,200);
   noStroke();
-  image(rockImg,rock.x, rock.y, rock.size);
+  image(rockImg,rock.x, rock.y, 50,50);
   pop();
+
+
+
+  image(rocketImg,rocket.x, rocket.y, 50,50);
+
 
 
 }
