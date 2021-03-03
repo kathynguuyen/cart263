@@ -10,7 +10,4 @@ Overall, I felt pretty overwhelmed by this project but I tried to use the most l
 
 # Credits
 
-Inspired by Space Sweepers Movie
-Icons from flaticon
-Sound effects from freesounds
-Background from Bloons TD 6
+Inspired by Space Sweepers Movie, Icons from flaticon, Sound effects from freesounds and Background from Bloons TD 6
