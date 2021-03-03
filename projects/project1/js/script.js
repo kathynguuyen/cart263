@@ -11,6 +11,7 @@ let agentProfile = {
   name: `**REDACTED**`,
 };
 
+// game data to save user's high score
 let gameData = {
   highScore: 0,
 };
@@ -76,6 +77,7 @@ function setup() {
   video = createCapture(VIDEO);
   video.hide();
 
+  // get data
   let data = JSON.parse(localStorage.getItem("space-sweeper-high-score-data"));
   if (data !== null) {
     gameData = data;
@@ -118,6 +120,8 @@ function setup() {
     vy: -2,
   };
 
+
+  // second rocket
   secondRocket = {
     x: random(width),
     y: height,
@@ -188,6 +192,7 @@ function displayTitle() {
   text(`SPACE SWEEPERS`, width / 2, height / 2 - 150);
 }
 
+// welcoming the agent
 function helloAgent() {
   textFont(paragraphFont);
   textAlign(CENTER, CENTER);
@@ -201,6 +206,7 @@ function helloAgent() {
   );
 }
 
+// user input their name
 function nameInput(name) {
   if (state === `title`) {
     agentProfile.name = name.toUpperCase();
@@ -232,6 +238,8 @@ function instructions() {
   pop();
 }
 
+/** function of running ---------------------------------
+*/
 function running() {
   push();
   image(backgroundImg, 0, 0, 640, 480);
@@ -309,32 +317,41 @@ function running() {
   secondRocket.x += secondRocket.vx;
   secondRocket.y += secondRocket.vy;
 
+  // spawns rock at random spot
   if (rock.y < 0) {
     rock.x = random(width);
     rock.y = height;
   }
 
+
+  // spawns rocket at random spot
   if (rocket.y < 0) {
     rocket.x = random(width);
     rocket.y = height;
   }
 
+  // spawns second rocket at random spot
   if (secondRocket.y < 0) {
     secondRocket.x = random(width);
-    SecondRocket.y = height;
+    secondRocket.y = height;
   }
 
+  // display rock
   push();
   fill(0, 100, 200);
   noStroke();
   image(rockImg, rock.x, rock.y, 50, 50);
   pop();
 
+  // display rocket
   image(rocketImg, rocket.x, rocket.y, 60, 60);
 
+  // display second rocket
   image(secondRocketImg, secondRocket.x, secondRocket.y, 70, 70);
 }
 
+/** function lose ---------------------------------
+**/
 function lose() {
   push();
   textFont(paragraphFont);
@@ -348,6 +365,7 @@ function lose() {
   counter = 0;
 }
 
+/** function when user press a key **/
 function keyPressed() {
   if (state === `title`) {
     state = `instructions`;
