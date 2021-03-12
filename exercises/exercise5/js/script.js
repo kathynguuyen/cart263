@@ -25,21 +25,39 @@ let sevenSyllableLines = [
   `They will not come back again`
 ];
 
+let haikuTitle = [
+  `chicken`,
+  `dragon`,
+  `fire`,
+  `lobster`,
+  `broccoli`
+];
+
+let header = random(haikuTitle);
 let line1 = random(fiveSyllableLines);
 let line2 = random(sevenSyllableLines);
 let line3 = random(fiveSyllableLines);
 
+let title = document.getElementById(`title`);
 let line1P = document.getElementById(`line-1`);
 let line2P = document.getElementById(`line-2`);
 let line3P = document.getElementById(`line-3`);
 
+title.innerText = header;
 line1P.innerText = line1;
 line2P.innerText = line2;
 line3P.innerText = line3;
 
+
 line1P.addEventListener(`click`, lineClicked);
 line2P.addEventListener(`click`, lineClicked);
 line3P.addEventListener(`click`, lineClicked);
+title.addEventListener(`click`, lineClicked);
+
+function changeTitle(event) {
+  setNewLine(event.target);
+}
+
 
 function lineClicked(event) {
   fadeOut(event.target, 1);
@@ -76,6 +94,9 @@ function setNewLine(element) {
   }
   else if (element === line2P) {
     element.innerText = random(sevenSyllableLines);
+  }
+  else if (element === title) {
+    element.innerText = random(haikuTitle);
   }
 }
 
