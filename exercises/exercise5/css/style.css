@@ -7,11 +7,24 @@ By default that's nothing.
 
 
 body {
-  background-color: #346278;
+  background-color: #F9DEC9;
+}
+
+#title {
+  position: fixed;
+  top: 30%;
+  left: 40%;
+  background-color: #99B2DD;
+  border: 2px solid black;
 }
 
 #haiku {
+  position: fixed;
+  top: 40%;
+  left: 40%;
+  background-color: #E9AFA3;
   font-family = Helvetica, sans-serif;
   font-size: 2rem;
   font-weight: bold;
+  border: 2px solid black;
 }
