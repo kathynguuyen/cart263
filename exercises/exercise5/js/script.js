@@ -58,6 +58,13 @@ function changeTitle(event) {
   setNewLine(event.target);
 }
 
+document.addEventListener(`keydown`, function(event) {
+  if (event.key === `r`) {
+    title.style[`color`] = `#FFC0CB`;
+  }
+});
+
+
 
 function lineClicked(event) {
   fadeOut(event.target, 1);
