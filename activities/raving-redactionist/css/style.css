@@ -1,6 +1,4 @@
-/*********************************************
-
-Here is a description of any special CSS used.
-By default that's nothing.
-
-**********************************************/
+#secret-document {
+  font-family: monospace;
+  width: 50vw;
+}
