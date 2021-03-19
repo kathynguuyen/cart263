@@ -2,7 +2,6 @@
 
 var audio = new Audio('assets/sounds/beep.mp3');
 
-
 $(`.top-secret`).on(`click`, redact);
 setInterval(revelation, 500);
 
