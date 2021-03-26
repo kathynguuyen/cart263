@@ -1,11 +1,4 @@
-/**
-Title of Project
-Author Name
-
-This is a template. You must fill in the title,
-author, and this description to match your project!
-*/
-
+var audioElement = new Audio('assets/sounds/win.wav');
 
 "use strict";
 
@@ -44,7 +37,8 @@ $(`#answer`).droppable({
     ui.draggable.draggable(`disable`);
     ui.draggable.removeClass(`found`);
     // check if user gets the answer
-    if($(this).text() === `Theremin`) {
+    if($(this).text() === `T`) {
+      audioElement.play();
       $(`#solved-dialog`).dialog(`open`);
     }
   }
