@@ -9,6 +9,8 @@ author, and this description to match your project!
 
 "use strict";
 
+
+
 $(`#solved-dialog`).dialog({
   autoOpen: false,
   buttons: {
@@ -19,12 +21,20 @@ $(`#solved-dialog`).dialog({
 });
 
 
+$(`#instructions-dialog`).dialog({
+  autoOpen: true,
+  modal: true,
+});
+
+
 $(`.secret`).one(`mouseover`, function(event) {
   $(this).addClass(`found`,500);
   $(this).draggable({
     helper: `clone`
   });
 });
+
+
 
 
 $(`#answer`).droppable({
