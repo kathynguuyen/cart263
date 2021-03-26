@@ -37,7 +37,7 @@ $(`#answer`).droppable({
     ui.draggable.draggable(`disable`);
     ui.draggable.removeClass(`found`);
     // check if user gets the answer
-    if($(this).text() === `T`) {
+    if($(this).text() === `Today`) {
       audioElement.play();
       $(`#solved-dialog`).dialog(`open`);
     }
