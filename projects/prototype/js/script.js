@@ -14,6 +14,12 @@ let saying = ``;
 
 let state = `start`
 
+let phone = {
+  x: 100,
+  y: 100,
+  size: 55
+}
+
 function setup() {
   createCanvas(640, 480);
 }
@@ -26,19 +32,19 @@ function draw(){
   }
 }
 
-
-
 function start(){
-  speak();
 
-  push();
-  textSize(20);
-  textAlign(CENTER);
-  fill(255,255,255);
-  text(beginGame, width/2, height /2);
-  pop();
+  // temporary phone
+  ellipse(phone.x,phone.y,phone.size);
+
 }
 
-function speak(){
-  setTimeout(responsiveVoice.speak(beginGame, "Japanese Female"),10);
+function mousePressed(){
+
+    let pBtn = dist(mouseX, mouseY, phone.x, phone.y);
+      if(pBtn < phone.size / 2) {
+        responsiveVoice.speak(beginGame, "Japanese Female");
+      }
+
+
 }
