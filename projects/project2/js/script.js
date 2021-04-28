@@ -23,8 +23,27 @@ let phone = {
   size: 55,
 };
 
+let titleFont;
+let paragraphFont;
+
+/**
+Description of preload
+Load fonts, pictures and sounds
+*/
+function preload() {
+  // load sounds
+
+
+  // load fonts
+  titleFont = loadFont(`assets/fonts/FjallaOne-Regular.ttf`);
+  paragraphFont = loadFont(`assets/fonts/VarelaRound-Regular.ttf`);
+
+  // load images
+
+}
+
 function setup() {
-  createCanvas(640, 480);
+  createCanvas(700, 500);
   // timer countdown
   setInterval(countdownTime, 1000);
 }
@@ -36,12 +55,21 @@ function draw() {
     start();
   }
 
+  if (state === `firstGame`) {
+    firstGame();
+  }
+
   if (state === `death`) {
     death();
   }
 }
 
+
 function start() {
+  
+}
+
+function firstGame() {
   // temporary phone
   ellipse(phone.x, phone.y, phone.size);
 
