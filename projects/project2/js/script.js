@@ -2,7 +2,8 @@
 Alice in Borderlands
 Kathy Nguyen
 
-This
+Game inspired by Alice in Borderlands.
+Escape room type of game.
 */
 
 // voice instructions
@@ -21,7 +22,11 @@ let startButton = {
 let titleFont;
 let paragraphFont;
 
+// sounds
+let BGM;
+let phoneSFX;
 
+// random word chosen from the JSON data file
 let word1;
 
 
@@ -31,6 +36,8 @@ Load fonts, pictures and sounds
 */
 function preload() {
   // load sounds
+  BGM = loadSound(`assets/sounds/BGM.mp3`);
+  phoneSFX = loadSound(`assets/sounds/phoneSound.wav`);
 
   // load fonts
   titleFont = loadFont(`assets/fonts/FjallaOne-Regular.ttf`);
@@ -49,12 +56,17 @@ function preload() {
 function setup() {
   createCanvas(700, 500);
 
-
+  // input box for second game
   input = createInput();
-  input.position(400, 160);
+  input.position(610, 185);
 
-
+  // randomize a word in the JSON file array
   word1 = random(randomWords.objects);
+
+  // play background music
+  BGM.play();
+  BGM.loop();
+  BGM.setVolume(0.05);
 }
 
 function draw() {
@@ -128,6 +140,7 @@ function mousePressed() {
   if (state === `firstGame`) {
     if (mouseX > 40 && mouseX < 85) {
       if (mouseY > 22 && mouseY < 129) {
+        phoneSFX.play();
         responsiveVoice.speak(instructionsFirstGame, "UK English Female", {
           rate: 0.9,
         });
@@ -171,6 +184,7 @@ function mousePressed() {
   if (state === `secondGame`) {
     if (mouseX > 40 && mouseX < 85) {
       if (mouseY > 22 && mouseY < 129) {
+        phoneSFX.play();
         responsiveVoice.speak(instructionsSecondGame + word1, "UK English Female", {
           rate: 0.9,
         });

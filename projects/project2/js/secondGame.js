@@ -12,7 +12,7 @@ let result, reverseWord;
 let timerSecondGame = 30;
 
 // instructionsSecondGame
-let instructionsSecondGame = `Listen carefully. Write this word backwards. `;
+let instructionsSecondGame = `Listen carefully. Type this word backwards in the box above. `;
 let beginThirdGame = `Final game.`;
 
 function secondGame() {
