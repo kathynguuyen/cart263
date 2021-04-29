@@ -5,12 +5,8 @@ Kathy Nguyen
 This
 */
 
-// Code goes here
-
-let beginGame = `Welcome to the game. Are you ready to start?`;
-
-// timer to 10 seconds
-let countdown = 10;
+// voice instructions
+let beginGame = `Welcome to the game. You have to be fast for every game or you will die! ... First game begins now`;
 
 // states
 let state = `start`;
@@ -25,9 +21,6 @@ let startButton = {
 let titleFont;
 let paragraphFont;
 
-// images
-let phoneInstruction;
-
 /**
 Description of preload
 Load fonts, pictures and sounds
@@ -35,19 +28,17 @@ Load fonts, pictures and sounds
 function preload() {
   // load sounds
 
-
   // load fonts
   titleFont = loadFont(`assets/fonts/FjallaOne-Regular.ttf`);
   paragraphFont = loadFont(`assets/fonts/VarelaRound-Regular.ttf`);
 
   // load images
   phoneInstruction = loadImage(`assets/images/phoneInstructions.png`);
+  doorLevelOne = loadImage(`assets/images/doorLevelOne.png`);
 }
 
 function setup() {
   createCanvas(700, 500);
-
-
 }
 
 function draw() {
@@ -66,42 +57,24 @@ function draw() {
   }
 }
 
-
 function start() {
   // display of the start screen
   push();
   textFont(titleFont);
   textAlign(CENTER, CENTER);
   textSize(50);
-  fill(139,0,0);
+  fill(139, 0, 0);
   text(`ALICE IN BORDERLANDS`, width / 2, height / 2 - 150);
   textFont(paragraphFont);
   textAlign(CENTER, CENTER);
   textSize(30);
-  fill(255,255,255);
+  fill(255, 255, 255);
   text(`Press this button to start`, width / 2, height / 2);
   pop();
 
   // display startButton
-  fill(139,0,0);
-  ellipse(startButton.x , startButton.y , startButton.size);
-}
-
-function firstGame() {
-
-
-  //display timer on screen
-  push();
-  textSize(20);
-  textAlign(CENTER);
-  fill(255, 255, 255);
-  text("Timer: " + countdown, width / 2, height / 2 - 200);
-
-  countdownTime();
-
-
-  image(phoneInstruction,0,0,700,500);
-  pop();
+  fill(139, 0, 0);
+  ellipse(startButton.x, startButton.y, startButton.size);
 }
 
 function death() {
@@ -110,19 +83,19 @@ function death() {
 
 function mousePressed() {
   // when player press the phone game master gives instructions or talks.
-  let pBtn = dist(mouseX, mouseY, startButton.x, startButton.y);
-  if (pBtn < startButton.size / 2) {
-    responsiveVoice.speak(beginGame, "Japanese Female");
-    state = `firstGame`;
+  if (state === `start`) {
+    let pBtn = dist(mouseX, mouseY, startButton.x, startButton.y);
+    if (pBtn < startButton.size / 2) {
+      responsiveVoice.speak(beginGame, "Japanese Female", { rate: 1.2 });
+      state = `firstGame`;
+    }
   }
-}
 
-// timer goes down
-function countdownTime() {
-  if(frameCount % 60 == 0 && countdown > 0) {
-    countdown--;
-  }
-  if (countdown == 0) {
-    state = `death`;
+  if (state === `firstGame`) {
+    if (mouseX > 40 && mouseX < 85) {
+      if (mouseY > 22 && mouseY < 129) {
+        responsiveVoice.speak(instructionsFirstGame, "Japanese Female");
+      }
+    }
   }
 }
