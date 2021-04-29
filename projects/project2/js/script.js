@@ -86,7 +86,7 @@ function mousePressed() {
   if (state === `start`) {
     let pBtn = dist(mouseX, mouseY, startButton.x, startButton.y);
     if (pBtn < startButton.size / 2) {
-      responsiveVoice.speak(beginGame, "Japanese Female", { rate: 1.2 });
+      responsiveVoice.speak(beginGame, "Japanese Female", { rate: 1 });
       state = `firstGame`;
     }
   }
@@ -95,7 +95,7 @@ function mousePressed() {
   if (state === `firstGame`) {
     if (mouseX > 40 && mouseX < 85) {
       if (mouseY > 22 && mouseY < 129) {
-        responsiveVoice.speak(instructionsFirstGame, "Japanese Female");
+        responsiveVoice.speak(instructionsFirstGame, "Japanese Female", {rate: 0.9});
       }
     }
 
