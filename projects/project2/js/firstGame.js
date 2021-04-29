@@ -1,5 +1,6 @@
 let instructionsFirstGame = `You have to click the doors the right amount of times from the first to the third door in order. Remember this sequence carefully but backwards. Two.Three.One`;
-
+let beginSecondGame = `Second game beings now`;
+let saying = ``;
 // images for first beginGame
 let phoneInstruction;
 let doorLevelOne;
@@ -11,30 +12,26 @@ let counterSecondDoor = 0;
 let counterThirdDoor = 0;
 let totalDoorCounter = counterFirstDoor + counterSecondDoor + counterThirdDoor;
 
-
 function firstGame() {
-
-
   //display timer on screen
   push();
   textSize(20);
   textAlign(CENTER);
   fill(255, 255, 255);
-  text("Timer: " + timerFirstGame, width / 2, height / 2 - 200);
+  text("Time: " + timerFirstGame, width / 2, height / 2 - 200);
 
   countdownFirstGame();
   checkDoorCounter();
 
+  image(phoneInstruction, 0, 0, 700, 500);
+  image(doorLevelOne, 0, 0, 700, 500);
 
-  image(phoneInstruction,0,0,700,500);
-  image(doorLevelOne,0,0,700,500);
   pop();
 }
 
-
 // timer goes down
 function countdownFirstGame() {
-  if(frameCount % 60 == 0 && timerFirstGame > 0) {
+  if (frameCount % 60 == 0 && timerFirstGame > 0) {
     timerFirstGame--;
   }
   if (timerFirstGame == 0) {
@@ -43,7 +40,12 @@ function countdownFirstGame() {
 }
 
 function checkDoorCounter() {
-  if(counterFirstDoor == 1 && counterSecondDoor == 4 && counterThirdDoor == 2) {
+  if (
+    counterFirstDoor == 1 &&
+    counterSecondDoor == 4 &&
+    counterThirdDoor == 2
+  ) {
     state = `secondGame`;
+    responsiveVoice.speak(beginSecondGame, "UK English Female", { rate: 1 });
   }
 }
