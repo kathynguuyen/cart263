@@ -91,11 +91,49 @@ function mousePressed() {
     }
   }
 
+  // instructions for the first game (phone instructions) when mouse pressed
   if (state === `firstGame`) {
     if (mouseX > 40 && mouseX < 85) {
       if (mouseY > 22 && mouseY < 129) {
         responsiveVoice.speak(instructionsFirstGame, "Japanese Female");
       }
     }
+
+    // first door mouse press
+    if (mouseX > 40 && mouseX < 200) {
+      if (mouseY > 181 && mouseY < 500) {
+        counterFirstDoor++;
+        console.log("first door:" + counterFirstDoor);
+        if(counterFirstDoor > 1 || counterFirstDoor < 0) {
+          state = `death`;
+        }
+      }
+    }
+
+    // second door mouse pressed
+    if (mouseX > 270 && mouseX < 483) {
+      if (mouseY > 181 && mouseY < 500) {
+        counterSecondDoor++;
+        console.log("second door:" + counterSecondDoor);
+        if(counterSecondDoor > 4 || counterSecondDoor < 0) {
+          state = `death`;
+        }
+      }
+    }
+
+    // third door mouse pressed
+    if (mouseX > 500 && mouseX < 620) {
+      if (mouseY > 181 && mouseY < 500) {
+        counterThirdDoor++;
+        console.log("3 door:" + counterThirdDoor);
+        if(counterThirdDoor > 2 || counterThirdDoor < 0) {
+          state = `death`;
+        }
+
+      }
+    }
+
   }
+
+
 }
