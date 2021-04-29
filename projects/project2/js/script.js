@@ -2,9 +2,7 @@
 Alice in Borderlands
 Kathy Nguyen
 
-This is a prototype of the responsive voice.
-The game master will give instructions through the phone.
-This prototype will also include the timer test.
+This
 */
 
 // Code goes here
@@ -23,8 +21,12 @@ let startButton = {
   size: 55,
 };
 
+// fonts
 let titleFont;
 let paragraphFont;
+
+// images
+let phoneInstruction;
 
 /**
 Description of preload
@@ -39,7 +41,7 @@ function preload() {
   paragraphFont = loadFont(`assets/fonts/VarelaRound-Regular.ttf`);
 
   // load images
-
+  phoneInstruction = loadImage(`assets/images/phoneInstructions.png`);
 }
 
 function setup() {
@@ -90,13 +92,15 @@ function firstGame() {
 
   //display timer on screen
   push();
-  textSize(50);
+  textSize(20);
   textAlign(CENTER);
   fill(255, 255, 255);
-  text("Timer: " + countdown, width / 2, height / 2);
+  text("Timer: " + countdown, width / 2, height / 2 - 200);
 
   countdownTime();
 
+
+  image(phoneInstruction,0,0,700,500);
   pop();
 }
 
