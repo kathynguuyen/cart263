@@ -9,7 +9,7 @@ This
 let beginGame = `Welcome to the game... First game begins now. Door game.`;
 
 // states
-let state = `secondGame`;
+let state = `start`;
 
 let startButton = {
   x: 350,
@@ -77,6 +77,7 @@ function draw() {
   }
 }
 
+// start page of the game ------------------------------------------
 function start() {
   // display of the start screen
   push();
@@ -97,10 +98,22 @@ function start() {
   ellipse(startButton.x, startButton.y, startButton.size);
 }
 
+
+// death state when user runs out of time or makes a mistake --------------------------------------------
 function death() {
+  push();
   background(255, 0, 0);
+  textFont(paragraphFont);
+  textAlign(CENTER, CENTER);
+  textSize(30);
+  fill(255, 255, 255);
+  text(`You are dead.`, width / 2, height / 2);
+  pop();
 }
 
+
+
+// function when player press their mouse ----------------------------------------
 function mousePressed() {
   // when player press the phone game master gives instructions or talks. -----------------------------------------------------
   if (state === `start`) {
