@@ -2,6 +2,12 @@
 
 let counter = 0;
 
+// timerThirdGame
+let timerThirdGame = 20;
+
+// instructions
+let instructionsThirdGame = `Find a book and show it to the camera before the timer runs out`;
+
 // User's webcam
 let video;
 // The name of our model
@@ -91,4 +97,14 @@ function highlightObject(object) {
   textAlign(CENTER, CENTER);
   text(`${object.label}, ${object.confidence.toFixed(2)}`, object.x + object.width / 2, object.y + object.height / 2);
   pop();
+}
+
+// countdown
+function countdownThirdGame() {
+  if (frameCount % 60 == 0 && timerThirdGame > 0) {
+    timerThirdGame--;
+  }
+  if (timeThirdGame == 0) {
+    state = `death`;
+  }
 }

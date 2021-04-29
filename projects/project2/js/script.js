@@ -227,5 +227,16 @@ function mousePressed() {
       }
     }
 
+    // instructions for the third game (phone instructions) when mouse pressed -----------------------------------------------
+    if (state === `thirdGame`) {
+      if (mouseX > 40 && mouseX < 85) {
+        if (mouseY > 22 && mouseY < 129) {
+          phoneSFX.play();
+          responsiveVoice.speak(instructionsThirdGame, "UK English Female", {
+            rate: 0.9,
+          });
+        }
+      }
+
 }
 }
