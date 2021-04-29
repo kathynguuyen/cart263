@@ -111,6 +111,11 @@ function draw() {
   if (state === `death`) {
     death();
   }
+
+  if (state === `win`) {
+    win();
+  }
+
 }
 
 // start page of the game ------------------------------------------
@@ -226,7 +231,7 @@ function mousePressed() {
         });
       }
     }
-
+}
     // instructions for the third game (phone instructions) when mouse pressed -----------------------------------------------
     if (state === `thirdGame`) {
       if (mouseX > 40 && mouseX < 85) {
@@ -237,6 +242,5 @@ function mousePressed() {
           });
         }
       }
-
-}
+    }
 }

@@ -3,7 +3,7 @@
 let counter = 0;
 
 // timerThirdGame
-let timerThirdGame = 20;
+let timerThirdGame = 15;
 
 // instructions
 let instructionsThirdGame = `Find a book and show it to the camera before the timer runs out`;
@@ -54,6 +54,9 @@ If there are currently objects detected it outlines them and labels them
 with the name and confidence value.
 */
 function thirdGame() {
+
+  // display instructions
+  image(phoneInstruction, 0, 0, 700, 500);
   // Display the webcam
   image(video, 100, 100, 550, 350);
 
@@ -74,8 +77,14 @@ function thirdGame() {
 
   console.log(counter);
 
-  // display instructions
-  image(phoneInstruction, 0, 0, 700, 500);
+  textSize(20);
+  textAlign(CENTER);
+  fill(255, 255, 255);
+  text("Time: " + timerThirdGame, width / 2, height / 2 - 200);
+
+
+  countdownThirdGame();
+
 
 }
 
@@ -104,7 +113,7 @@ function countdownThirdGame() {
   if (frameCount % 60 == 0 && timerThirdGame > 0) {
     timerThirdGame--;
   }
-  if (timeThirdGame == 0) {
+  if (timerThirdGame == 0) {
     state = `death`;
   }
 }
