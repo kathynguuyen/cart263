@@ -1,7 +1,8 @@
 
 // instructions
 let instructionsFirstGame = `You have to click the doors the right amount of times from the first to the third door in order. Remember this sequence carefully but backwards. Two.Three.One`;
-let beginSecondGame = `Second game beings now. Memory game.`;
+let beginSecondGame = `Second game beings now. Backwards game.`;
+
 
 // images for first beginGame
 let phoneInstruction;

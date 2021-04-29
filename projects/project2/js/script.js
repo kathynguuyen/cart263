@@ -9,7 +9,7 @@ This
 let beginGame = `Welcome to the game... First game begins now. Door game.`;
 
 // states
-let state = `start`;
+let state = `secondGame`;
 
 let startButton = {
   x: 350,
@@ -21,6 +21,12 @@ let startButton = {
 let titleFont;
 let paragraphFont;
 
+
+let word1;
+let word2;
+let word3;
+let word4;
+let word5;
 
 /**
 Description of preload
@@ -38,11 +44,20 @@ function preload() {
   doorLevelOne = loadImage(`assets/images/doorLevelOne.png`);
 
   // load json file data
-  randomWords = loadJSON(`https://raw.githubusercontent.com/dariusk/corpora/master/data/objects/objects.json`);
+  randomWords = loadJSON(
+    `https://raw.githubusercontent.com/dariusk/corpora/master/data/objects/objects.json`
+  );
 }
 
 function setup() {
   createCanvas(700, 500);
+
+
+  input = createInput();
+  input.position(400, 160);
+
+
+  word1 = random(randomWords.objects);
 }
 
 function draw() {
@@ -54,6 +69,10 @@ function draw() {
 
   if (state === `firstGame`) {
     firstGame();
+  }
+
+  if (state === `secondGame`) {
+    secondGame();
   }
 
   if (state === `death`) {
@@ -86,7 +105,7 @@ function death() {
 }
 
 function mousePressed() {
-  // when player press the phone game master gives instructions or talks.
+  // when player press the phone game master gives instructions or talks. -----------------------------------------------------
   if (state === `start`) {
     let pBtn = dist(mouseX, mouseY, startButton.x, startButton.y);
     if (pBtn < startButton.size / 2) {
@@ -95,23 +114,21 @@ function mousePressed() {
     }
   }
 
-  // instructions for the first game (phone instructions) when mouse pressed
+  // instructions for the first game (phone instructions) when mouse pressed -----------------------------------------------
   if (state === `firstGame`) {
     if (mouseX > 40 && mouseX < 85) {
       if (mouseY > 22 && mouseY < 129) {
         responsiveVoice.speak(instructionsFirstGame, "UK English Female", {
           rate: 0.9,
-      });
+        });
       }
     }
-  }
-
     // first door mouse press
     if (mouseX > 40 && mouseX < 200) {
       if (mouseY > 181 && mouseY < 500) {
         counterFirstDoor++;
         console.log("first door:" + counterFirstDoor);
-        if(counterFirstDoor > 1 || counterFirstDoor < 0) {
+        if (counterFirstDoor > 1 || counterFirstDoor < 0) {
           state = `death`;
         }
       }
@@ -122,7 +139,7 @@ function mousePressed() {
       if (mouseY > 181 && mouseY < 500) {
         counterSecondDoor++;
         console.log("second door:" + counterSecondDoor);
-        if(counterSecondDoor > 4 || counterSecondDoor < 0) {
+        if (counterSecondDoor > 4 || counterSecondDoor < 0) {
           state = `death`;
         }
       }
@@ -133,11 +150,14 @@ function mousePressed() {
       if (mouseY > 181 && mouseY < 500) {
         counterThirdDoor++;
         console.log("3 door:" + counterThirdDoor);
-        if(counterThirdDoor > 2 || counterThirdDoor < 0) {
+        if (counterThirdDoor > 2 || counterThirdDoor < 0) {
           state = `death`;
         }
-
       }
     }
+  }
+
+  // instructions for the second game (phone instructions) when mouse pressed -----------------------------------------------
+
 
 }
