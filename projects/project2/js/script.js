@@ -6,11 +6,13 @@ Game inspired by Alice in Borderlands.
 Escape room type of game.
 */
 
+"use strict";
+
 // voice instructions
 let beginGame = `Welcome to the game... First game begins now. Door game.`;
 
 // states
-let state = `start`;
+let state = `loading`;
 
 let startButton = {
   x: 350,
@@ -56,6 +58,20 @@ function preload() {
 function setup() {
   createCanvas(700, 500);
 
+  // starts webcam
+  video = createCapture(VIDEO);
+  video.hide();
+
+  // Start the CocoSsd model and when it's ready start detection
+  // and switch to the running state
+  cocossd = ml5.objectDetector('cocossd', {}, function() {
+    // Ask CocoSsd to start detecting objects, calls gotResults
+    // if it finds something
+    cocossd.detect(video, gotResults);
+    // Switch to the running state
+    state = `start`;
+  });
+
   // input box for second game
   input = createInput();
   input.position(610, 185);
@@ -72,6 +88,10 @@ function setup() {
 function draw() {
   background(0);
 
+  if (state === `loading`) {
+    loading();
+  }
+
   if (state === `start`) {
     start();
   }
@@ -82,6 +102,10 @@ function draw() {
 
   if (state === `secondGame`) {
     secondGame();
+  }
+
+  if (state === `thirdGame`) {
+    thirdGame();
   }
 
   if (state === `death`) {
