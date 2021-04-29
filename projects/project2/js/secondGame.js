@@ -13,7 +13,7 @@ let timerSecondGame = 30;
 
 // instructionsSecondGame
 let instructionsSecondGame = `Listen carefully. Type this word backwards in the box above. `;
-let beginThirdGame = `Final game.`;
+let beginThirdGame = `Final game. Speed game.`;
 
 function secondGame() {
   push();
