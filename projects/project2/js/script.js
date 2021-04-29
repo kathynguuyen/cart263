@@ -17,9 +17,9 @@ let countdown = 10;
 // states
 let state = `start`;
 
-let phone = {
-  x: 100,
-  y: 100,
+let startButton = {
+  x: 350,
+  y: 400,
   size: 55,
 };
 
@@ -44,8 +44,8 @@ function preload() {
 
 function setup() {
   createCanvas(700, 500);
-  // timer countdown
-  setInterval(countdownTime, 1000);
+
+
 }
 
 function draw() {
@@ -66,12 +66,27 @@ function draw() {
 
 
 function start() {
-  
+  // display of the start screen
+  push();
+  textFont(titleFont);
+  textAlign(CENTER, CENTER);
+  textSize(50);
+  fill(139,0,0);
+  text(`ALICE IN BORDERLANDS`, width / 2, height / 2 - 150);
+  textFont(paragraphFont);
+  textAlign(CENTER, CENTER);
+  textSize(30);
+  fill(255,255,255);
+  text(`Press this button to start`, width / 2, height / 2);
+  pop();
+
+  // display startButton
+  fill(139,0,0);
+  ellipse(startButton.x , startButton.y , startButton.size);
 }
 
 function firstGame() {
-  // temporary phone
-  ellipse(phone.x, phone.y, phone.size);
+
 
   //display timer on screen
   push();
@@ -79,6 +94,9 @@ function firstGame() {
   textAlign(CENTER);
   fill(255, 255, 255);
   text("Timer: " + countdown, width / 2, height / 2);
+
+  countdownTime();
+
   pop();
 }
 
@@ -88,19 +106,19 @@ function death() {
 
 function mousePressed() {
   // when player press the phone game master gives instructions or talks.
-  let pBtn = dist(mouseX, mouseY, phone.x, phone.y);
-  if (pBtn < phone.size / 2) {
+  let pBtn = dist(mouseX, mouseY, startButton.x, startButton.y);
+  if (pBtn < startButton.size / 2) {
     responsiveVoice.speak(beginGame, "Japanese Female");
+    state = `firstGame`;
   }
 }
 
 // timer goes down
 function countdownTime() {
-  if (countdown > 0) {
+  if(frameCount % 60 == 0 && countdown > 0) {
     countdown--;
   }
-  // if countdown is at 0, the player dies
-  if(countdown === 0) {
+  if (countdown == 0) {
     state = `death`;
   }
 }
