@@ -1,12 +1,14 @@
+
+// instructions
 let instructionsFirstGame = `You have to click the doors the right amount of times from the first to the third door in order. Remember this sequence carefully but backwards. Two.Three.One`;
-let beginSecondGame = `Second game beings now`;
-let saying = ``;
+let beginSecondGame = `Second game beings now. Memory game.`;
+
 // images for first beginGame
 let phoneInstruction;
 let doorLevelOne;
 
 // counters
-let timerFirstGame = 60;
+let timerFirstGame = 40;
 let counterFirstDoor = 0;
 let counterSecondDoor = 0;
 let counterThirdDoor = 0;

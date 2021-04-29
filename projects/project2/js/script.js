@@ -6,7 +6,7 @@ This
 */
 
 // voice instructions
-let beginGame = `Welcome to the game... First game begins now`;
+let beginGame = `Welcome to the game... First game begins now. Door game.`;
 
 // states
 let state = `start`;
@@ -20,6 +20,7 @@ let startButton = {
 // fonts
 let titleFont;
 let paragraphFont;
+
 
 /**
 Description of preload
@@ -35,6 +36,9 @@ function preload() {
   // load images
   phoneInstruction = loadImage(`assets/images/phoneInstructions.png`);
   doorLevelOne = loadImage(`assets/images/doorLevelOne.png`);
+
+  // load json file data
+  randomWords = loadJSON(`https://raw.githubusercontent.com/dariusk/corpora/master/data/objects/objects.json`);
 }
 
 function setup() {
