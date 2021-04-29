@@ -69,7 +69,7 @@ function setup() {
     // if it finds something
     cocossd.detect(video, gotResults);
     // Switch to the running state
-    state = `thirdGame`;
+    state = `start`;
   });
 
   // input box for second game
