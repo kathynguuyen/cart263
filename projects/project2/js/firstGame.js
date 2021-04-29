@@ -1,4 +1,4 @@
-let instructionsFirstGame = `You. have. to click the doors the. right amount of times from the first. to the third door. in order. Remember this sequence carefully but backwards. Two.Three.One`;
+let instructionsFirstGame = `You have to click the doors the right amount of time from the first to the third door in order. Remember this sequence carefully but backwards. Two.Three.One`;
 
 // images for first beginGame
 let phoneInstruction;
@@ -25,6 +25,10 @@ function firstGame() {
   countdownFirstGame();
   checkDoorCounter();
 
+  textSize(20);
+  textAlign(CENTER);
+  fill(255, 255, 255);
+  text(instructionsFirstGame, width / 2, height / 2 - 100);
 
   image(phoneInstruction,0,0,700,500);
   image(doorLevelOne,0,0,700,500);
