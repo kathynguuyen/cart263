@@ -25,10 +25,6 @@ function firstGame() {
   countdownFirstGame();
   checkDoorCounter();
 
-  textSize(20);
-  textAlign(CENTER);
-  fill(255, 255, 255);
-  text(instructionsFirstGame, width / 2, height / 2 - 100);
 
   image(phoneInstruction,0,0,700,500);
   image(doorLevelOne,0,0,700,500);
