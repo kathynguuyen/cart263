@@ -1,3 +1,4 @@
+
 // User's webcam
 let video;
 // The name of our model
@@ -27,12 +28,13 @@ function gotResults(err, results) {
 Displays a simple loading screen with the loading model's name
 */
 function loading() {
-  background(255);
+  background(0);
 
   push();
   textSize(32);
   textStyle(BOLD);
   textAlign(CENTER, CENTER);
+  fill(255,255,255);
   text(`Loading ${modelName}...`, width / 2, height / 2);
   pop();
 }
@@ -44,7 +46,7 @@ with the name and confidence value.
 */
 function thirdGame() {
   // Display the webcam
-  image(video, 0, 0, width, height);
+  image(video, 100, 100, 500, 300);
 
   // Check if there currently predictions to display
   if (predictions) {
