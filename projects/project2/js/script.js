@@ -95,7 +95,7 @@ function mousePressed() {
   if (state === `firstGame`) {
     if (mouseX > 40 && mouseX < 85) {
       if (mouseY > 22 && mouseY < 129) {
-        responsiveVoice.speak(instructionsFirstGame, "Japanese Female", {rate: 0.9});
+        responsiveVoice.speak(instructionsFirstGame, "UK English Female", {rate: 0.9});
       }
     }
 
