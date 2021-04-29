@@ -6,7 +6,7 @@ This
 */
 
 // voice instructions
-let beginGame = `Welcome to the game. You have to be fast for every game or you will die! ... First game begins now`;
+let beginGame = `Welcome to the game... First game begins now`;
 
 // states
 let state = `start`;
