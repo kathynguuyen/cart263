@@ -147,6 +147,18 @@ function death() {
   pop();
 }
 
+// when user finishes all the levels -------------------------------------------------------
+function win() {
+  push();
+  background(255, 255, 255);
+  textFont(paragraphFont);
+  textAlign(CENTER, CENTER);
+  textSize(30);
+  fill(0, 0, 0);
+  text(`You have escaped. Good job!`, width / 2, height / 2);
+  pop();
+}
+
 
 
 // function when player press their mouse ----------------------------------------

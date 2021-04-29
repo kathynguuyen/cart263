@@ -1,3 +1,6 @@
+// Third Game: Speed Game
+
+let counter = 0;
 
 // User's webcam
 let video;
@@ -46,7 +49,7 @@ with the name and confidence value.
 */
 function thirdGame() {
   // Display the webcam
-  image(video, 100, 100, 500, 300);
+  image(video, 100, 100, 550, 350);
 
   // Check if there currently predictions to display
   if (predictions) {
@@ -54,10 +57,20 @@ function thirdGame() {
     for (let i = 0; i < predictions.length; i++) {
       // Get the object predicted
       let object = predictions[i];
+      if (object.label === `book`) {
+        state = `win`;
+      }
+
       // Highlight it on the canvas
       highlightObject(object);
     }
   }
+
+  console.log(counter);
+
+  // display instructions
+  image(phoneInstruction, 0, 0, 700, 500);
+
 }
 
 /**
