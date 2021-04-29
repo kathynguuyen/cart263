@@ -9,7 +9,11 @@ let input, finalInput;
 let result, reverseWord;
 
 // timer
-let timerSecondGame = 40;
+let timerSecondGame = 30;
+
+// instructionsSecondGame
+let instructionsSecondGame = `Listen carefully. Write this word backwards. `;
+let beginThirdGame = `Final game.`;
 
 function secondGame() {
   push();
@@ -24,12 +28,11 @@ function secondGame() {
   checkInput();
   countdownSecondGame();
 
-  textSize(20);
+  textSize(50);
   textAlign(CENTER);
   fill(255, 255, 255);
-  text("Time: " + timerFirstGame, width / 2, height / 2 - 200);
+  text("Time: " + timerSecondGame, width / 2, height / 2);
 
-  text(word1, width / 2, height / 2);
 
   pop();
 }
@@ -54,12 +57,13 @@ function checkInput() {
   finalInput = input.value();
   if (finalInput === reverseWord) {
     state = `thirdGame`;
+    responsiveVoice.speak(beginThirdGame, "UK English Female", { rate: 1 });
   }
 }
 
 function countdownSecondGame() {
-  if (frameCount % 60 == 0 && timerFirstGame > 0) {
-    timerFirstGame--;
+  if (frameCount % 60 == 0 && timerSecondGame > 0) {
+    timerSecondGame--;
   }
   if (timerSecondGame == 0) {
     state = `death`;

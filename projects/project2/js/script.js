@@ -23,10 +23,7 @@ let paragraphFont;
 
 
 let word1;
-let word2;
-let word3;
-let word4;
-let word5;
+
 
 /**
 Description of preload
@@ -158,6 +155,14 @@ function mousePressed() {
   }
 
   // instructions for the second game (phone instructions) when mouse pressed -----------------------------------------------
+  if (state === `secondGame`) {
+    if (mouseX > 40 && mouseX < 85) {
+      if (mouseY > 22 && mouseY < 129) {
+        responsiveVoice.speak(instructionsSecondGame + word1, "UK English Female", {
+          rate: 0.9,
+        });
+      }
+    }
 
-
+}
 }
