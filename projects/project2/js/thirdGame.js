@@ -1,4 +1,5 @@
-// Third Game: Speed Game
+// Third Game: Speed Game : User have to find a book as fast as posssible and show it to the camera in order to finish the escape room
+// Includes CocoSsd library and ObjectDetector
 
 let counter = 0;
 
@@ -43,7 +44,7 @@ function loading() {
   textSize(32);
   textStyle(BOLD);
   textAlign(CENTER, CENTER);
-  fill(255,255,255);
+  fill(255, 255, 255);
   text(`Loading ${modelName}...`, width / 2, height / 2);
   pop();
 }
@@ -54,7 +55,6 @@ If there are currently objects detected it outlines them and labels them
 with the name and confidence value.
 */
 function thirdGame() {
-
   // display instructions
   image(phoneInstruction, 0, 0, 700, 500);
   // Display the webcam
@@ -67,6 +67,7 @@ function thirdGame() {
       // Get the object predicted
       let object = predictions[i];
       if (object.label === `book`) {
+        // check if the user is holding a book and make they escape the room
         state = `win`;
       }
 
@@ -77,15 +78,13 @@ function thirdGame() {
 
   console.log(counter);
 
+  // display of timer
   textSize(20);
   textAlign(CENTER);
   fill(255, 255, 255);
   text("Time: " + timerThirdGame, width / 2, height / 2 - 200);
 
-
   countdownThirdGame();
-
-
 }
 
 /**
@@ -104,7 +103,11 @@ function highlightObject(object) {
   textSize(18);
   fill(255, 255, 0);
   textAlign(CENTER, CENTER);
-  text(`${object.label}, ${object.confidence.toFixed(2)}`, object.x + object.width / 2, object.y + object.height / 2);
+  text(
+    `${object.label}, ${object.confidence.toFixed(2)}`,
+    object.x + object.width / 2,
+    object.y + object.height / 2
+  );
   pop();
 }
 

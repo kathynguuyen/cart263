@@ -1,8 +1,8 @@
+// File for the first game (Door game where they have to remember the sequence backwards to go through the doors)
 
 // instructions
 let instructionsFirstGame = `You have to click the doors the right amount of times from the first to the third door in order. Remember this sequence carefully but backwards. Two.Three.One`;
 let beginSecondGame = `Second game beings now. Backwards game.`;
-
 
 // images for first beginGame
 let phoneInstruction;
@@ -26,6 +26,7 @@ function firstGame() {
   countdownFirstGame();
   checkDoorCounter();
 
+  // image of phone and the doors
   image(phoneInstruction, 0, 0, 700, 500);
   image(doorLevelOne, 0, 0, 700, 500);
 
@@ -42,6 +43,7 @@ function countdownFirstGame() {
   }
 }
 
+// check if user pressed the doors the right amount of times in order to pass to second game
 function checkDoorCounter() {
   if (
     counterFirstDoor == 1 &&

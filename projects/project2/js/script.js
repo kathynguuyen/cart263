@@ -31,7 +31,6 @@ let phoneSFX;
 // random word chosen from the JSON data file
 let word1;
 
-
 /**
 Description of preload
 Load fonts, pictures and sounds
@@ -64,7 +63,7 @@ function setup() {
 
   // Start the CocoSsd model and when it's ready start detection
   // and switch to the running state
-  cocossd = ml5.objectDetector('cocossd', {}, function() {
+  cocossd = ml5.objectDetector("cocossd", {}, function () {
     // Ask CocoSsd to start detecting objects, calls gotResults
     // if it finds something
     cocossd.detect(video, gotResults);
@@ -88,6 +87,7 @@ function setup() {
 function draw() {
   background(0);
 
+  // all the states seperated in function
   if (state === `loading`) {
     loading();
   }
@@ -115,7 +115,6 @@ function draw() {
   if (state === `win`) {
     win();
   }
-
 }
 
 // start page of the game ------------------------------------------
@@ -138,7 +137,6 @@ function start() {
   fill(139, 0, 0);
   ellipse(startButton.x, startButton.y, startButton.size);
 }
-
 
 // death state when user runs out of time or makes a mistake --------------------------------------------
 function death() {
@@ -163,8 +161,6 @@ function win() {
   text(`You have escaped. Good job!`, width / 2, height / 2);
   pop();
 }
-
-
 
 // function when player press their mouse ----------------------------------------
 function mousePressed() {
@@ -226,21 +222,25 @@ function mousePressed() {
     if (mouseX > 40 && mouseX < 85) {
       if (mouseY > 22 && mouseY < 129) {
         phoneSFX.play();
-        responsiveVoice.speak(instructionsSecondGame + word1, "UK English Female", {
+        responsiveVoice.speak(
+          instructionsSecondGame + word1,
+          "UK English Female",
+          {
+            rate: 0.9,
+          }
+        );
+      }
+    }
+  }
+  // instructions for the third game (phone instructions) when mouse pressed -----------------------------------------------
+  if (state === `thirdGame`) {
+    if (mouseX > 40 && mouseX < 85) {
+      if (mouseY > 22 && mouseY < 129) {
+        phoneSFX.play();
+        responsiveVoice.speak(instructionsThirdGame, "UK English Female", {
           rate: 0.9,
         });
       }
     }
-}
-    // instructions for the third game (phone instructions) when mouse pressed -----------------------------------------------
-    if (state === `thirdGame`) {
-      if (mouseX > 40 && mouseX < 85) {
-        if (mouseY > 22 && mouseY < 129) {
-          phoneSFX.play();
-          responsiveVoice.speak(instructionsThirdGame, "UK English Female", {
-            rate: 0.9,
-          });
-        }
-      }
-    }
+  }
 }
